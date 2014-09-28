@@ -1,0 +1,21 @@
+***
+2014年3月13日 下午11:58
+***
+##1. UIActionSheet
+**1. Create UIActionSheet Object.**   
+When you create an action sheet object from the UIActionSheet class, you can 
+initialize its most important properties with one method.
+
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil                                                         delegate:self                                                cancelButtonTitle:@"Cancel"                                           destructiveButtonTitle:@"Delete Note"                                                otherButtonTitles:nil];
+**2. Behavior of Action Sheets.**  
+
+* `iPhone: showInView`  
+* `iPad:  showFromRect:inView:animated:` & `showFromBarButtonItem:`
+
+**3. UIActionSheetDelegate Protocol.**
+
+The delegate must implement the actionSheet:clickedButtonAtIndex: message to respond when the button is tapped.
+
+	- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex	{    	NSLog(@"The %@ button was tapped.", [actionSheet buttonTitleAtIndex:buttonIndex]);	}
+##2. tintColorThe `tintColor property` is a quick and simple way to skin your app with a custom color. Setting a tint color for a view automatically sets that tint color for all of its subviews. However, you can manually override this property for any of those subviews and its descendants. In other words, each view inherits its superview’s tint color if its own tint color is nil. If the highest level view in the view hierarchy has a nil value for tint color, it defaults to the system blue color.
+##3. 

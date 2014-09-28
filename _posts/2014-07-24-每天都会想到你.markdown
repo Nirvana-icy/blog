@@ -1,0 +1,44 @@
+2014-07-24
+		
+嵌套的define & 带参数的define 
+~~~
+#define kCurNormalFontOfSize(fontSize)  [UIFont systemFontOfSize:fontSize]
+
+#define kSharePublishContentTextViewFont  kCurNormalFontOfSize(14)
+~~~
+	 
+UIButton
+1.create the button
+2.setFame of the button
+3.setBackgroundImage forState:UIControlStateNormal
+4.setBackgroundImage forState:UIControlStateHighlighted
+5.buttonBack addTarget:self action:@selector(pageBack:) forControlEventTouchUpInside
+6.[buttonBack setEnabled:YES];
+7.[buttonBack setTag:kWebBackButtonTag];
+~~~
+- (void)setupViewToolSubs:(UIView *)viewParent
+{
+	// 父窗口尺寸
+	CGRect parentFrame = [viewParent frame];
+	// 子窗口高度
+	NSInteger spaceXStart = 0;
+	NSInteger spaceXEnd = parentFrame.size.width;
+	NSInteger toolsHMargin = (parentFrame.size.width - 5*kWebBackButtonWidth)/6;
+
+	/* 间隔 */
+	spaceXStart += toolsHMargin;
+	
+	//=====================================
+	// Back Button
+	//=====================================
+
+	UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
+	[buttonBack setFrame:CGRectMake(spaceXStart, (NSInteger)(parentFrame.size - kWebBackButtonHeight)/2,kWebBackButtonWidth,kWebBackButtonHeight)];
+	[buttonBack setBackgroundImage:[UIImage imageNamed:kWebBackImageFile] forState:UIControlStateNormal];
+	[buttonBack setBackgroundImage:[UIImage imageNamed:kWebBackFocusImageFile] forState:UIControlStateHighlighted];
+	[buttonBack addTarget:self action:@selector(pageBack:) forControlEvent:UIControlEventTouchUpInside];
+	[buttonBack setEnabled:[_webViewWeb canGoBack]];
+	[buttonBack setTag:kWebBackButtonTag];
+...
+}
+~~~
